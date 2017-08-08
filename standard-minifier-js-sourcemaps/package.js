@@ -1,6 +1,6 @@
 Package.describe({
   name: 'hexsprite:standard-minifier-js',
-  version: '2.1.0',
+  version: '2.1.1',
   summary: 'Javascript minifier that creates production sourcemap',
   documentation: '../readme.md',
   git: 'https://github.com/hexsprite/minify-js-sourcemaps.git'
