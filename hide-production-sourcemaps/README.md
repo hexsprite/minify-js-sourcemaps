@@ -2,9 +2,9 @@ Prevents access to source maps in production and any files in your `public` fold
 
 Install with
 ```
-meteor add zodern:hide-production-sourcemaps
+meteor add hexsprite:hide-production-sourcemaps
 ```
 
-`zodern:hide-production-sourcemaps` only runs in production.
+`hexsprite:hide-production-sourcemaps` only runs in production.
 
 It works by preventing the Webapp package from adding the `x-sourcemap` header to javascript files, and removing the source maps from Webapp's list of static files. 

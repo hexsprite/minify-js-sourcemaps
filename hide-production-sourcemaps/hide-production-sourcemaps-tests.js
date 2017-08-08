@@ -2,7 +2,7 @@
 import { Tinytest } from "meteor/tinytest";
 
 // Import and rename a variable exported by hide-production-sourcemaps.js.
-import { name as packageName } from "meteor/zodern:hide-production-sourcemaps";
+import { name as packageName } from "meteor/hexsprite:hide-production-sourcemaps";
 
 // Write your tests here!
 // Here is an example.

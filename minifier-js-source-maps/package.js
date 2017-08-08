@@ -1,9 +1,9 @@
 Package.describe({
-  name: 'zodern:minifier-js',
+  name: 'hexsprite:minifier-js',
   summary: "JavaScript minifier",
   version: "2.0.0",
   documentation: null,
-  git: "https://github.com/zodern/minify-js-sourcemaps.git"
+  git: "https://github.com/hexsprite/minify-js-sourcemaps.git"
 });
 
 Npm.depends({
