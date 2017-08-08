@@ -132,6 +132,7 @@ MeteorBabelMinifier.prototype.processFilesForBundle = function(files, options) {
     } else {
       try {
         var minified = meteorJsMinify(
+          file.getPathInBundle(),
           file.getContentsAsString(),
           file.getSourceMap()
         );
@@ -153,6 +154,14 @@ MeteorBabelMinifier.prototype.processFilesForBundle = function(files, options) {
   });
 
   minifiedResults.forEach(function (result) {
+    if (!result.code) {
+      console.log(result.file, 'no code!')
+      return
+    }
+    if (!result.map) {
+      console.log(result.file, 'no map!')
+      return
+    }
     concat.add(result.file, result.code, result.map);
     Plugin.nudge();
   });

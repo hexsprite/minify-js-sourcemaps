@@ -7,7 +7,7 @@ Package.describe({
 });
 
 Npm.depends({
-  "uglify-js": "2.8.21"
+  "uglify-es": "3.0.27"
 });
 
 Package.onUse(function (api) {

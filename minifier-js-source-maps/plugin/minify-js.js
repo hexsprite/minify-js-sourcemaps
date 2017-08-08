@@ -1,23 +1,32 @@
 var uglify;
 
-meteorJsMinify = function(source, sourcemap) {
+meteorJsMinify = function(filename, source, sourcemap) {
   var result = {};
-  uglify = uglify || Npm.require('uglify-js');
+  uglify = uglify || Npm.require('uglify-es');
 
   try {
+  // var minified = uglify.minify({[filename]: source}, {
   var minified = uglify.minify(source, {
-      fromString: true,
       compress: {
         drop_debugger: false,
         unused: false,
-        dead_code: false
+        dead_code: false,
       },
-      outFileName: 'app.js',
-      outSourceMap: "production.min.map",
-      sourceMapUrl: false,
+      sourceMap: {
+        content: typeof sourcemap === 'object' ? sourcemap : JSON.parse(sourcemap),
+        filename: 'app.js',
+        // url: 'production.min.map'
+      },
+      // outFileName: 'app.js',
+      // outSourceMap: "production.min.map",
+      // sourceMapUrl: false,
       // Some sourcemaps are objects, and some are strings
-      inSourceMap: typeof sourcemap === 'object' ? sourcemap : JSON.parse(sourcemap)
+      // inSourceMap:
+      warnings: true
     });
+    if (minified.error) {
+      throw minified.error
+    }
     result.code = minified.code;
     result.sourcemap = minified.map;
   } catch (e) {
