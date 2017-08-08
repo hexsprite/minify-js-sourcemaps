@@ -3,7 +3,7 @@ var uglify;
 meteorJsMinify = function(filename, source, sourcemap) {
   var result = {};
   uglify = uglify || Npm.require('uglify-es');
-
+  const sourceMap = typeof sourcemap === 'object' ? sourcemap : JSON.parse(sourcemap);
   try {
   // var minified = uglify.minify({[filename]: source}, {
   var minified = uglify.minify(source, {
@@ -13,7 +13,7 @@ meteorJsMinify = function(filename, source, sourcemap) {
         dead_code: false,
       },
       sourceMap: {
-        content: typeof sourcemap === 'object' ? sourcemap : JSON.parse(sourcemap),
+        content: sourceMap,
         filename: 'app.js',
         // url: 'production.min.map'
       },
@@ -30,13 +30,13 @@ meteorJsMinify = function(filename, source, sourcemap) {
     result.code = minified.code;
     result.sourcemap = minified.map;
   } catch (e) {
-    console.log(e);
-    // TODO: create sourcemaps when using babili
-
+    console.log(`uglify failed, using slow Babel minify: filename=${filename} line=${e.line} col=${e.col} pos=${e.pos} message=${e.message}`);
     // Although Babel.minify can handle a wider variety of ECMAScript
     // 2015+ syntax, it is substantially slower than UglifyJS, so we use
     // it only as a fallback.
-    result.code = Babel.minify(source).code;
+    minified = Babel.minify(source, {filename, sourceMaps: true, inputSourceMap: sourceMap})
+    result.code = minified.code
+    result.sourcemap = minified.map
   }
 
   return result;

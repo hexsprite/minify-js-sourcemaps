@@ -1,7 +1,7 @@
 Package.describe({
   name: 'hexsprite:minifier-js',
   summary: "JavaScript minifier",
-  version: "2.0.1",
+  version: "2.1.0",
   documentation: null,
   git: "https://github.com/hexsprite/minify-js-sourcemaps.git"
 });
