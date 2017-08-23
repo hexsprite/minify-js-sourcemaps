@@ -1,8 +1,8 @@
-var uglify;
+const uglify = Npm.require('uglify-js');
 
 meteorJsMinify = function(filename, source, sourcemap) {
   var result = {};
-  uglify = uglify || Npm.require('uglify-es');
+
   const sourceMap = typeof sourcemap === 'object' ? sourcemap : JSON.parse(sourcemap);
   try {
   // var minified = uglify.minify({[filename]: source}, {

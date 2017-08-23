@@ -8,7 +8,7 @@ Package.describe({
 
 Package.registerBuildPlugin({
   name: 'minifyStdJS',
-  use: ['sanjo:meteor-files-helpers@1.2.0_1', 'hexsprite:minifier-js@2.0.2'],
+  use: ['sanjo:meteor-files-helpers@1.2.0_1', 'hexsprite:minifier-js@2.1.0'],
   sources: ['plugin/minify-js.js'],
   npmDependencies: {
   'concat-with-sourcemaps': '1.0.4'
